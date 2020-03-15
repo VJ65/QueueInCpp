@@ -1,0 +1,135 @@
+////////////////////////////////////---QUEUE---////////////////////////////////////////////////
+class QUEUE {
+	private:
+		int queueArray[SIZE];
+		int front = -1;
+		int rear = -1;
+	public:
+		bool isEmpty();
+		void enqueue(int value);
+		void dequeue();
+		void showFront();
+		void displayQueue();
+		void queueManipulation();
+};
+//function to check if queue is empty
+bool QUEUE::isEmpty() {
+	if (front == -1 && rear == -1) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//function to insert element in queue
+void QUEUE::enqueue(int value) {
+	if (rear == SIZE - 1) {
+		cout << "Queue is full!" << endl;
+	}
+	else {
+		if (front == -1) {
+			front = 0;
+		}
+		rear++;
+		queueArray[rear] = value;
+	}
+}
+//function to remove element from queue
+void QUEUE::dequeue() {
+	if (isEmpty()) {
+		cout << "Queue is empty!" << endl;
+	}
+	else {
+		if (front == rear) {
+			front = rear = -1;
+		}
+		else {
+			front++;
+		}
+	}
+}
+//function to display element at front
+void QUEUE::showFront(){
+	if (isEmpty()) {
+		cout << "Queue is empty!" << endl;
+	}
+	else {
+		cout << "Element at front is: " << queueArray[front] << endl;
+	}
+}
+//function to display queue
+void QUEUE::displayQueue() {
+	if (isEmpty()) {
+		cout << "Queue is empty!" << endl;
+	}
+	else {
+		cout << "Queue: ";
+		for (int i = front; i <= rear; i++) {
+			cout << queueArray[i] << "  ";
+		}
+		cout << "\n";
+	}
+}
+//function to manipulate QUEUE
+void QUEUE::queueManipulation() {
+	int n, value;
+	int flag = 1;
+	cout << "--------------------------------------------------------------------------" << endl;
+	cout << "\nQueue Manipulation" << endl;
+	while (flag == 1) {
+		cout << "\n--------------------------------------------------------------------------\n";
+		cout << "\n 1.Enter element \n 2.Show element at front \n 3.Display Queue \n 4.Remove element from queue \n 5.EXIT" << endl;
+		cout << "--->>  ";
+		cin >> n;
+		cout << "\n";
+		switch (n) {
+			case 1:
+				cout << "Enter value: ";
+				cin >> value;
+				enqueue(value);
+				break;
+			case 2:
+				showFront();
+				break;
+			case 3:
+				displayQueue();
+				break;
+			case 4:
+				dequeue();
+				break;
+			case 5:
+				flag = 0;
+				break;
+			default:
+				break;
+		}
+	}
+		system("pause");
+}
+
+
+///////////////////////////////---Main Function---///////////////////////////////
+int main() {
+	STACK alpha;
+	QUEUE beta;
+	char choice;
+	
+	cout << "Stack and Queue Manipulation" << endl;
+	cout << "Enter S for Stack or Q for Queue: ";
+	cin >> choice;
+	switch (choice){
+		case 's':
+		case 'S':
+			alpha.stackManipulation();
+			break;
+
+		case 'q':
+		case 'Q':
+			beta.queueManipulation();
+			break;
+
+	}
+	
+	return 0;
+}
+/////////////////////////////////////////////////////////////////////////////////
